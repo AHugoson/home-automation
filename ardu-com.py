@@ -1,6 +1,10 @@
-import serial
+import time
+from Controller import Arduino_Controller
 
-ser = serial.Serial('COM3')
-print(ser.name)
-ser.write('hej!')
-ser.close()
+_controller = Arduino_Controller()
+_controller.start()
+
+while True:
+    _controller.sendMessage(input("Message:"))
+
+_controller.stop()
