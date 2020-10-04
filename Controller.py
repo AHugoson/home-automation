@@ -6,16 +6,16 @@ class Arduino_Controller(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self, name='Arduino_Controller')
         self.port = 'COM3'
-        self.message = b''
+        self.message = ''
         self.close_connection = False
     
     def run(self):
-        print(f'{self.name} running...\n')
+        print(f'{self.name} running...')
         with serial.Serial(self.port) as ser:
             while ser.isOpen():
                 if self.message:
                     ser.write(self.message)
-                    self.message = b''
+                    self.message = ''
                 if ser.inWaiting():
                     read_str = ser.readline().decode()
                     # print(read_str, end='')
