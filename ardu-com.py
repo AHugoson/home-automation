@@ -11,7 +11,6 @@ class Server(threading.Thread):
         self._server_ip = '0.0.0.0'
         self._addr = (self._server_ip, self._port)
         self._format = 'utf-8'
-        self.daemon = True
 
     def handle_client(self, conn, addr):
         print(f'\n[NEW CONNECTION] {addr} connected.')
@@ -30,8 +29,7 @@ class Server(threading.Thread):
         print(f'\n[LISTENING] Server is listening on {self._addr}')
         while True:
             conn, addr = _socket.accept()
-            t = threading.Thread(target=self.handle_client, args=(conn, addr))
-            t.daemon = True
+            t = threading.Thread(target=self.handle_client, args=(conn, addr), daemon=True)
             t.start()
 
 _controller = Arduino_Controller()
