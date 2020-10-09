@@ -3,7 +3,7 @@ import logging
 from Controller import Arduino_Controller
 from Server import TCP_Server
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 _controller = Arduino_Controller()
 _controller.start()
