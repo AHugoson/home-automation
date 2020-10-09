@@ -3,6 +3,7 @@
 ## TODO Checklist
 
 - [x] Write basic python script compatible with old arduino code (only lights on/off)
+- [ ] Write a direct-communication protocol for web browsers. (old way was to save post requests to a file using PHP)
 - [ ] Build basic website for real-time light control
 - [ ] Docker container
 - [ ] Update arduino + python control script
