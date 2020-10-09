@@ -4,7 +4,7 @@
 
 ✔ Write basic python script compatible with old arduino code (only lights on/off)
 
-〇 Write a direct-communication protocol for web browsers. (old way was to save post requests to a file using PHP)
+✔ Write a direct-communication protocol for web browsers. (old way was to save post requests to a file using PHP)
 
 〇 Build basic website for real-time light control
 
