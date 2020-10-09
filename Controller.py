@@ -4,8 +4,7 @@ import serial
 import logging
 
 class Arduino_Controller(threading.Thread):
-    def __init__(self, log_level=logging.INFO):
-        logging.basicConfig(level=log_level)
+    def __init__(self):
         threading.Thread.__init__(self, name='Arduino_Controller')
         self.port = 'COM3'
         self.message = ''
