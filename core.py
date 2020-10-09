@@ -12,11 +12,6 @@ _server = TCP_Server()
 _server.start()
 
 while True:
-    try:
-        _controller.sendMessage(input())
-    except KeyboardInterrupt:
-        print('[KeyboardInterrupt] Closing connections and subprocesses.')
-        _controller.stop()
-        _server._stop()
-        print('Bye')
-        break
+    if _server._received.__contains__("direct-command"):
+        _controller.sendMessage(_server._received.pop("direct-command"))
+    time.sleep(0.01)
