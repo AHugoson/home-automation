@@ -39,5 +39,5 @@ class TCP_Server(threading.Thread):
         logging.info(f'[LISTENING] Server is listening on {self._addr}')
         while True:
             conn, addr = _socket.accept()
-            t = threading.Thread(target=self.handleClient, args=(conn, addr), daemon=True)
+            t = threading.Thread(target=self.handleClient, args=(conn, addr), name="Client: " + str(addr[0]), daemon=True)
             t.start()
