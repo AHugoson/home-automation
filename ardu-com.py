@@ -6,21 +6,23 @@ import threading
 class Server(threading.Thread):
     def __init__(self):
         threading.Thread.__init__(self, name="Server", daemon=True)
-        self._header = 64
+        self._max_size = 1024
         self._port = 1337
-        self._server_ip = '0.0.0.0'
-        self._addr = (self._server_ip, self._port)
+        self._ip = '0.0.0.0'
+        self._addr = (self._ip, self._port)
         self._format = 'utf-8'
 
-    def handle_client(self, conn, addr):
+    def handle_client(self, conn:socket.socket, addr):
         print(f'\n[NEW CONNECTION] {addr} connected.')
 
         connected = True
         while connected:
-            msg_length = conn.recv(self._header).decode(self._format)
-            msg_length = int(msg_length)
-            msg = conn.recv(msg_length).decode(self._format)
-            print(f'[{addr}] {msg}')
+            msg = conn.recv(self._max_size).decode(self._format)
+            if msg:
+                print(f'[Client: {addr}] {msg}')
+            else:
+                print(f'\n[DISCONNECTED] {addr} closed the connection.')
+                connected = False
 
     def run(self):
         _socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
