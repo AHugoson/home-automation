@@ -4,7 +4,7 @@ SERVER_ADDR = ('localhost', 1337)
 
 _socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-print(f'\n[CONNECTING] Client is trying to connect to {SERVER_ADDR}')
+print(f'[CONNECTING] Client is trying to connect to {SERVER_ADDR}')
 _socket.connect(SERVER_ADDR)
 
 while True:
