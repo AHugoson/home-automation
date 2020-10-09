@@ -7,3 +7,4 @@
 - [ ] Docker container
 - [ ] Update arduino + python control script
 - [ ] Start adding additional functions (timers, automation, sensors, apartment-map, sunset/sunrise detect)
+- [ ] Build a 3D-model of the apartment with real-time control and feedback using three.js
