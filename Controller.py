@@ -1,16 +1,18 @@
 import time
 import threading
 import serial
+import logging
 
 class Arduino_Controller(threading.Thread):
-    def __init__(self):
+    def __init__(self, log_level=logging.INFO):
+        logging.basicConfig(level=log_level)
         threading.Thread.__init__(self, name='Arduino_Controller')
         self.port = 'COM3'
         self.message = ''
         self.close_connection = False
     
     def run(self):
-        print(f'{self.name} running...')
+        logging.info(f'{self.name} running...')
         with serial.Serial(self.port) as ser:
             while ser.isOpen():
                 if self.message:
@@ -18,7 +20,7 @@ class Arduino_Controller(threading.Thread):
                     self.message = ''
                 if ser.inWaiting():
                     read_str = ser.readline().decode()
-                    # print(read_str, end='')
+                    logging.debug(read_str)
                 if self.close_connection:
                     ser.close()
                 time.sleep(0.01)
