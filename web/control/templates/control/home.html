@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Direct control</title>
 </head>
-<body>
+<body style="background-color: #202020; color: #ffffff;">
     <h1>Direct control</h1>
     <script>
-        function testConnection() {
+        function openConnection() {
             // Create WebSocket connection.
-            const socket = new WebSocket('ws://localhost:8080');
+            socket = new WebSocket('ws://' + window.location.host + ':8080');
 
             // Connection opened
             socket.addEventListener('open', function (event) {
-                socket.send('Hello Server!');
+                socket.send('{"message":"Hello Server!"}');
             });
 
             // Listen for messages
@@ -22,7 +22,20 @@
                 console.log('Message from server ', event.data);
             });
         }
+        function closeConnection() {
+            socket.close()
+        }
+        function sendDirectCommand(cmd) {
+            socket.send('{"direct-command":"' + cmd + '"}')
+        }
     </script>
-    <button onclick="testConnection()">testConnection()</button>
+    <button onclick="openConnection()">openConnection()</button>
+    <button onclick="closeConnection()">closeConnection()</button>
+    <br><br>
+    <button onclick="sendDirectCommand('on 2')">on 2</button>
+    <button onclick="sendDirectCommand('off 2')">off 2</button>
+    <br><br>
+    <button onclick="sendDirectCommand('on 3')">on 3</button>
+    <button onclick="sendDirectCommand('off 3')">off 3</button>
 </body>
 </html>
