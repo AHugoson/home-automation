@@ -5,11 +5,28 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Current File",
+            "name": "Python: core.py",
             "type": "python",
             "request": "launch",
-            "program": "${file}",
+            "program": "${workspaceRoot}/core.py",
+            "console": "internalConsole",
+            "redirectOutput": true,
+        },
+        {
+            "name": "Django",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceRoot}/web/manage.py",
+            "args": ["runserver", "0.0.0.0:80"],
             "console": "integratedTerminal"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Django & Core",
+            "configurations": ["Django", "Python: core.py"],
+            "stopAll": true,
+            "preLaunchTask": "Activate venv"
         }
     ]
 }
