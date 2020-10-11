@@ -4,10 +4,10 @@ import json
 import logging
 
 class TCP_Server(threading.Thread):
-    def __init__(self):
+    def __init__(self, port=8888):
         threading.Thread.__init__(self, name="Server", daemon=True)
         self._max_size = 1024
-        self._port = 1337
+        self._port = port
         self._ip = '0.0.0.0'
         self._addr = (self._ip, self._port)
         self._format = 'utf-8'
@@ -25,11 +25,11 @@ class TCP_Server(threading.Thread):
                 try:
                     _json = json.loads(_received)
                     self._received = _json
-                    logging.debug(f'[Client: {addr}] {_json}')
+                    logging.info(f'[Client: {addr}] {_json}')
                 except json.JSONDecodeError:
-                    logging.debug(f'[Client: {addr}] Received invalid data: {_received}')
+                    logging.info(f'[Client: {addr}] Received invalid data: {_received}')
             else:
-                logging.info(f'[DISCONNECTED] {addr} closed the connection.')
+                logging.info(f'[CONNECTION CLOSED] {addr} closed the connection.')
                 connected = False
 
     def run(self):
