@@ -24,6 +24,7 @@ async def handleClient(websocket:websockets.WebSocketServerProtocol, path):
     logging.info(f'[NEW CONNECTION] {_addr} connected.')
 
     connected.add(websocket)
+    logging.info(f'Active connections: {len(connected)}')
     try:
         async for _received in websocket:
             try:
@@ -36,6 +37,7 @@ async def handleClient(websocket:websockets.WebSocketServerProtocol, path):
     except websockets.ConnectionClosedError:
         logging.info(f'[CONNECTION CLOSED] {_addr} closed the connection.')
         connected.remove(websocket)
+        logging.info(f'Active connections: {len(connected)}')
 
 start_server = websockets.serve(handleClient, *websocket_addr)
 
