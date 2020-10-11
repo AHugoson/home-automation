@@ -16,13 +16,13 @@ _controller.start()
 _server = TCP_Server()
 _server.start()
 
-# Set of connected clients
 connected = set()
+websocket_addr = ('0.0.0.0', 8080)
 
 async def handleClient(websocket:websockets.WebSocketServerProtocol, path):
     _addr = websocket.remote_address
     logging.info(f'[NEW CONNECTION] {_addr} connected.')
-    # Register client
+
     connected.add(websocket)
     try:
         async for _received in websocket:
@@ -35,12 +35,12 @@ async def handleClient(websocket:websockets.WebSocketServerProtocol, path):
                 logging.info(f'[Client: {_addr}] Received invalid data: {_received}')
     except websockets.ConnectionClosedError:
         logging.info(f'[CONNECTION CLOSED] {_addr} closed the connection.')
-        # Unregister client
         connected.remove(websocket)
 
-start_server = websockets.serve(handleClient, '0.0.0.0', 8080)
+start_server = websockets.serve(handleClient, *websocket_addr)
 
 asyncio.get_event_loop().run_until_complete(start_server)
+logging.info(f'[LISTENING] WebSocket Server is listening on {websocket_addr}')
 asyncio.get_event_loop().run_forever()
 
 while True:
