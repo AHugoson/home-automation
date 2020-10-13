@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Arduino",
+            "defines": [
+                "USBCON"
+            ],
+            "includePath": [
+                "${workspaceFolder}",
+                "${config:arduino.path}\\hardware\\arduino\\avr\\**",
+                "${config:arduino.path}\\tools\\**",
+                "${config:arduino.path}\\hardware\\tools\\**",
+                "${config:arduino.path}\\libraries\\**"
+            ],
+            "forcedInclude": [
+                "${config:arduino.path}\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.27.29110/bin/Hostx64/x64/cl.exe"
+        }
+    ],
+    "version": 4
+}
