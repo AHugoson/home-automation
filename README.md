@@ -8,7 +8,7 @@
 
 ✔ Build basic website for real-time light control
 
-〇 Update arduino + python control script
+✔ Update arduino + python control programs
 
 〇 Start adding additional functions (timers, automation, sensors, apartment-map, sunset/sunrise detect)
 
