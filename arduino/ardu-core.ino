@@ -32,7 +32,7 @@ void loop() {
             Serial.println("irRepeat");
         }
         else {
-            Serial.print("ir,");
+            Serial.print("ir:");
 
             if (results.decode_type == NEC) {
                 Serial.print("NEC");
@@ -49,10 +49,11 @@ void loop() {
             else {
                 Serial.print("UNKNOWN");
             }
-            Serial.print(",");
+            Serial.print(":");
             Serial.print(results.value, HEX);
-            Serial.print(",");
-            Serial.println(results.bits);
+            Serial.print(":");
+            Serial.print(results.bits);
+            Serial.println(";");
         }
         
         irrecv.resume();
