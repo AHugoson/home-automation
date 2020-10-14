@@ -15,17 +15,18 @@ class Arduino_Controller(threading.Thread):
         with serial.Serial(self._port) as ser:
             while ser.isOpen():
                 if self._message:
-                    ser.write(self._message)
+                    ser.write(self._message.encode())
+                    logging.debug('[SENT] Sent to Arduino:' + self._message)
                     self._message = ''
                 if ser.inWaiting():
                     read_str = ser.readline().decode()
-                    logging.debug(read_str)
+                    logging.debug('[RECEIVED] Arduino sent:' + read_str)
                 if self._close_connection:
                     ser.close()
                 time.sleep(0.01)
     
     def sendMessage(self, msg:str):
-        self._message = msg.encode()
+        self._message = msg
 
     def stop(self):
         """Close serial connection and stop thread"""
