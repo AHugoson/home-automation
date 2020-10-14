@@ -1,61 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Direct control</title>
+    <script src="{% static 'control/main.js' %}"></script>
 </head>
 <body style="background-color: #202020; color: #ffffff; text-align: center; font-family: monospace; padding-top: calc(50vh - 150px);">
     <h1>Direct control</h1>
-    <script>
-        function openConnection() {
-            if (typeof socket !== 'undefined') {
-                if (socket.readyState != socket.CLOSED) {
-                    alert('Already connected/connecting..')
-                    return
-                }
-            }
-
-            socket = new WebSocket('ws://' + window.location.host + ':8080');
-
-            socket.addEventListener('open', function (event) {
-                console.log('[CONNECTED] Connected to server: ' + socket.url);
-                document.getElementsByTagName('h1')[0].style='color: green;'
-            });
-            
-            socket.addEventListener('close', function (event){
-                console.log('[CONNECTION CLOSED] The connection was closed: ' + socket.url)
-                document.getElementsByTagName('h1')[0].style='color: red;'
-            });
-
-            socket.addEventListener('message', function (event) {
-                console.log('[RECEIVED] Message from server ', event.data);
-            });
-
-            socket.onerror=function() {
-                alert('Could not connect..\nIs the server running?');
-            }
-        }
-
-        function closeConnection() {
-            if (typeof socket !== 'undefined') {
-                socket.close()
-            }
-            else {
-                alert('No socket found..')
-            }
-        }
-        function sendDirectCommand(cmd) {
-            if (typeof socket !== 'undefined' && socket.readyState == socket.OPEN) {
-                cmd = '{"direct-command":"' + cmd + '"}'
-                socket.send(cmd);
-                console.log('[SENT] Sent to server: ' + cmd);
-            }
-            else {
-                alert('No active connection..')
-            }
-        }
-    </script>
     <button onclick="openConnection()">openConnection()</button>
     <button onclick="closeConnection()">closeConnection()</button>
     <br><br>
