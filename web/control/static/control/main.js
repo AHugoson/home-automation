@@ -10,12 +10,12 @@ function openConnection() {
 
     socket.addEventListener('open', function (event) {
         console.log('[CONNECTED] Connected to server: ' + socket.url);
-        document.getElementsByTagName('h1')[0].style='color: green;'
+        document.getElementsByTagName('h1')[0].style='color: cornflowerblue;'
     });
     
     socket.addEventListener('close', function (event){
         console.log('[CONNECTION CLOSED] The connection was closed: ' + socket.url)
-        document.getElementsByTagName('h1')[0].style='color: red;'
+        document.getElementsByTagName('h1')[0].style='color: salmon;'
     });
 
     socket.addEventListener('message', function (event) {
