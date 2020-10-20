@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Alarm
 
 def home(request):
-    return render(request, 'control/home.html')
+    context = {
+        'alarms': Alarm.objects.all()
+    }
+    return render(request, 'control/home.html', context)

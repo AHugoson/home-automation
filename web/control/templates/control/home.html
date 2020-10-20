@@ -24,5 +24,10 @@
     <br><br>
     <button onclick="sendDirectCommand('sendIR:FFE01F:32;')">ON PC</button>
     <button onclick="sendDirectCommand('sendIR:FF609F:32;')">OFF PC</button>
+    <h1>Alarms</h1>
+    {% for alarm in alarms %}
+        <h3>{{ alarm.time }}</h3>
+        <p>{{ alarm.command }}</p>
+    {% endfor %}
 </body>
 </html>
