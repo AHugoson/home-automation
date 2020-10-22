@@ -1,44 +1,49 @@
 function openConnection() {
-    if (typeof socket !== 'undefined') {
-        if (socket.readyState != socket.CLOSED) {
+    if (typeof ws !== 'undefined') {
+        if (ws.readyState != ws.CLOSED) {
             alert('Already connected/connecting..')
             return
         }
     }
 
-    socket = new WebSocket('ws://' + window.location.host + ':8080');
+    ws = new WebSocket('ws://' + window.location.host + ':8080');
 
-    socket.addEventListener('open', function (event) {
-        console.log('[CONNECTED] Connected to server: ' + socket.url);
+    ws.addEventListener('open', function (event) {
+        console.log('[CONNECTED] Connected to server: ' + ws.url);
         document.getElementsByTagName('h1')[0].style='color: cornflowerblue;'
     });
     
-    socket.addEventListener('close', function (event){
-        console.log('[CONNECTION CLOSED] The connection was closed: ' + socket.url)
+    ws.addEventListener('close', function (event){
+        console.log('[CONNECTION CLOSED] The connection was closed: ' + ws.url)
         document.getElementsByTagName('h1')[0].style='color: salmon;'
+        setTimeout(function(){openConnection();}, 1000)
     });
 
-    socket.addEventListener('message', function (event) {
+    ws.addEventListener('message', function (event) {
         console.log('[RECEIVED] Message from server ', event.data);
     });
 
-    socket.onerror=function() {
-        alert('Could not connect..\nIs the server running?');
+    ws.onerror = function(err) {
+        console.error('Socket encountered error: ', err.message, 'Closing socket');
+        ws.close();
+    };
+}
+
+openConnection();
+
+function closeConnection() {
+    if (typeof ws !== 'undefined') {
+        ws.close()
+    }
+    else {
+        alert('No ws found..')
     }
 }
 
-function closeConnection() {
-    if (typeof socket !== 'undefined') {
-        socket.close()
-    }
-    else {
-        alert('No socket found..')
-    }
-}
 function sendDirectCommand(cmd) {
-    if (typeof socket !== 'undefined' && socket.readyState == socket.OPEN) {
+    if (typeof ws !== 'undefined' && ws.readyState == ws.OPEN) {
         cmd = '{"direct-command":"' + cmd + '"}'
-        socket.send(cmd);
+        ws.send(cmd);
         console.log('[SENT] Sent to server: ' + cmd);
     }
     else {
