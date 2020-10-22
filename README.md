@@ -10,13 +10,17 @@
 
 ✔ Update arduino + python control programs
 
-〇 Start adding additional functions:
-    ✔ Daily alarms (TODO: add support for only running on specific weekdays, and only running once)
-    〇 Timers (do something after a given amount of time)
-    〇 Automation (do something when phone connects to wifi etc.)
-    〇 Sensors (light sensor etc.)
-    〇 Apartment-map
-    〇 Sunset/sunrise triggers
+✔ Daily alarms (TODO: add support for only running on specific weekdays, and only running once)
+  
+〇 Timers (do something after a given amount of time)
+  
+〇 Automation (do something when phone connects to wifi etc.)
+
+〇 Sensors (light sensor etc.)
+
+〇 Apartment-map
+
+〇 Sunset/sunrise triggers
 
 〇 Build a 3D-model of the apartment with real-time control and feedback using three.js
 
