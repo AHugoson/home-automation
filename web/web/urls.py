@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from app import views
+from rest_api import views
 
 router = routers.DefaultRouter()
 router.register(r'alarm', views.AlarmView, 'alarm')
