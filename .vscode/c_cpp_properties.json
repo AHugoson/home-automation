@@ -10,10 +10,13 @@
                 "${config:arduino.path}\\hardware\\arduino\\avr\\**",
                 "${config:arduino.path}\\tools\\**",
                 "${config:arduino.path}\\hardware\\tools\\**",
-                "${config:arduino.path}\\libraries\\**"
+                "${config:arduino.path}\\libraries\\**",
+                "X:\\Program\\Arduino\\hardware\\arduino\\avr\\**",
+                "X:\\Program\\Arduino\\tools\\**"
             ],
             "forcedInclude": [
-                "${config:arduino.path}\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
+                "${config:arduino.path}\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h",
+                "X:\\Program\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
             ],
             "intelliSenseMode": "msvc-x64",
             "cStandard": "c11",
