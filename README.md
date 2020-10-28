@@ -11,6 +11,8 @@
 ✔ Update arduino + python control programs
 
 ✔ Daily alarms (TODO: add support for only running on specific weekdays, and only running once)
+
+〇 React-app (an app that will hold all the functions below)
   
 〇 Timers (do something after a given amount of time)
   
