@@ -1,8 +1,8 @@
 function openConnection() {
     if (typeof ws !== 'undefined') {
         if (ws.readyState != ws.CLOSED) {
-            alert('Already connected/connecting..')
-            return
+            alert('Already connected/connecting..');
+            return;
         }
     }
 
@@ -10,13 +10,13 @@ function openConnection() {
 
     ws.addEventListener('open', function (event) {
         console.log('[CONNECTED] Connected to server: ' + ws.url);
-        document.getElementsByTagName('h1')[0].style='color: cornflowerblue;'
+        document.getElementsByTagName('h1')[0].style='color: cornflowerblue;';
     });
     
     ws.addEventListener('close', function (event){
-        console.log('[CONNECTION CLOSED] The connection was closed: ' + ws.url)
-        document.getElementsByTagName('h1')[0].style='color: salmon;'
-        setTimeout(function(){openConnection();}, 1000)
+        console.log('[CONNECTION CLOSED] The connection was closed: ' + ws.url);
+        document.getElementsByTagName('h1')[0].style='color: salmon;';
+        setTimeout(function(){openConnection();}, 1000);
     });
 
     ws.addEventListener('message', function (event) {
@@ -33,20 +33,20 @@ openConnection();
 
 function closeConnection() {
     if (typeof ws !== 'undefined') {
-        ws.close()
+        ws.close();
     }
     else {
-        alert('No ws found..')
+        alert('No ws found..');
     }
 }
 
 function sendDirectCommand(cmd) {
     if (typeof ws !== 'undefined' && ws.readyState == ws.OPEN) {
-        cmd = '{"direct-command":"' + cmd + '"}'
+        cmd = '{"direct-command":"' + cmd + '"}';
         ws.send(cmd);
         console.log('[SENT] Sent to server: ' + cmd);
     }
     else {
-        alert('No active connection..')
+        alert('No active connection..');
     }
 }

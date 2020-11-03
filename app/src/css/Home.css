@@ -1,0 +1,14 @@
+.home-logo {
+  height: 50vmin;
+  pointer-events: none;
+  animation: home-logo-spin infinite 1s ease-in-out;
+}
+
+@keyframes home-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(60deg);
+  }
+}

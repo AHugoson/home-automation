@@ -1,0 +1,58 @@
+.Activity-bar {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+  height: max(100vh, 250px);
+  width: 50px;
+  background-color: #262a2b;
+}
+
+.Activity-bar li {
+  position: relative;
+  list-style: none;
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding-bottom: 2px;
+}
+
+.Activity-bar a {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  color: rgba(255, 255, 255, 0.4);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.Active-url img {
+  opacity: 1;
+}
+
+.Bar-icon {
+  margin: auto;
+  width: 25px;
+  opacity: 0.4;
+}
+
+.Activity-bar a:hover .Bar-icon {
+  opacity: 1;
+}
+
+/* Portrait */
+@media screen and (orientation:portrait) {
+  .Activity-bar {
+    bottom: 0;
+    height: 50px;
+    width: max(100vw, 250px);
+    flex-direction: row;
+  }
+
+  .Activity-bar li {
+    width: 50px;
+    margin-left: calc((100vw - 250px) / 6);
+  }
+}
