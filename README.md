@@ -10,9 +10,11 @@
 
 ✔ Update arduino + python control programs
 
-✔ Daily alarms (TODO: add support for only running on specific weekdays, and only running once)
+✔ Daily alarms
 
-〇 React-app (an app that will hold all the functions below)
+✔ React-app (an app that will hold all the functions below)
+
+〇 Advanced alarms with support for only running on specific weekdays, and only running once
   
 〇 Timers (do something after a given amount of time)
   
@@ -20,10 +22,10 @@
 
 〇 Sensors (light sensor etc.)
 
-〇 Apartment-map
-
-〇 Sunset/sunrise triggers
+〇 Sunset/sunrise triggers (Visualizing the sun position at a specific time with analemmas would be cool)
 
 〇 Build a 3D-model of the apartment with real-time control and feedback using three.js
+
+〇 Apartment-map (2D)
 
 〇 Docker container
