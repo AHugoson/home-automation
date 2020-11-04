@@ -1,11 +1,11 @@
-import React, { Component, useState, useRef, useLoader } from "react";
+import React, { Component, Suspense, useState, useRef } from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
-import { Canvas, useFrame, extend, useThree } from "react-three-fiber";
+import { Canvas, useFrame, extend, useThree, useLoader } from "react-three-fiber";
 import { useSpring, a } from "react-spring/three";
 import "../css/ThreeD.css";
-// import diamond_holder from "../models/diamond_holder.gltf";
+import diamond_holder from "../models/diamond_holder.gltf";
 
 THREE.Object3D.DefaultUp = new THREE.Vector3(0, 0, 1);
 
@@ -24,9 +24,9 @@ const Controls = () => {
       autoRotate={true}
       autoRotateSpeed={1}
       enableDamping={true}
-      dampingFactor={0.05}
-      maxPolarAngle={Math.PI / 3}
-      minPolarAngle={Math.PI / 3}
+      dampingFactor={0.01}
+      maxPolarAngle={Math.PI * 0.5}
+      minPolarAngle={Math.PI * 0.25}
       args={[camera, gl.domElement]}
       ref={orbitRef}
     />
@@ -74,6 +74,14 @@ const Box = () => {
   );
 };
 
+function Model() {
+  const { nodes } = useLoader(GLTFLoader, diamond_holder);
+  return (
+      <mesh visible scale={[50,50,50]} geometry={nodes.scene}>
+      </mesh>
+  );
+}
+
 class ThreeDPage extends Component {
   state = {
     pathname: this.props.location.pathname,
@@ -82,18 +90,22 @@ class ThreeDPage extends Component {
   render() {
     return (
       <div className="content">
-        <Canvas style={{ height: "100vh" }}>
+        <Canvas style={{ height: "100vh" }} camera={{ position: [0, 0, 6] }}>
           <spotLight />
           <Controls />
           <polarGridHelper
-            position={[0, 0, 0.1]}
+            position={[0, 0, 0.01]}
             rotation={[Math.PI / 2, 0, 0]}
-            divisions={100}
+            args={[30, 16, 30]}
           />
-          {/* <gridHelper rotation={[0, 0, Math.PI / 2]} /> */}
-          {/* <gridHelper /> */}
+          {/* <gridHelper rotation={[0, 0, Math.PI / 2]} args={[60, 60]} /> */}
+          {/* <gridHelper args={[60, 60]} /> */}
           <Plane />
           <Box />
+          <Suspense fallback={null}>
+            <Model />
+          </Suspense>
+          {/* <fog attach="fog" args={["blue", 5, 50]} /> */}
         </Canvas>
       </div>
     );
