@@ -73,7 +73,12 @@ class ContentManager extends Component {
           )}
         />
         <Route path="/alarms" component={AlarmPage} />
-        <Route path="/cmd" component={CmdPage} />
+        <Route
+          path="/cmd"
+          render={(props) => (
+            <CmdPage {...props} websocket={this.state.ws} />
+          )}
+        />
         <Route path="/3d" component={ThreeDPage} />
         <Route render={() => <Redirect to={{ pathname: "/" }} />} />
       </Switch>

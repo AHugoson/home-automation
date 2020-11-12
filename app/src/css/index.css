@@ -45,7 +45,8 @@ header > p {
 /* Portrait */
 @media screen and (orientation:portrait) {
   .content {
-    width: 100vw;
+    width: 100%;
+    min-height: max(calc(100vh - 50px), 250px);
     margin-left: 0;
   }
 
