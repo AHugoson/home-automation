@@ -2,7 +2,7 @@ import React, { Component, useState, useRef } from "react";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import * as THREE from "three";
 import { Canvas, useFrame, extend, useThree } from "react-three-fiber";
-import { MeshWobbleMaterial, Sky } from "@react-three/drei";
+import { MeshWobbleMaterial } from "@react-three/drei";
 import { useSpring, a } from "react-spring/three";
 import "../css/ThreeD.css";
 
@@ -20,8 +20,8 @@ const Controls = () => {
   return (
     <orbitControls
       screenSpacePanning={false}
-      autoRotate={true}
-      autoRotateSpeed={1}
+      // autoRotate={true}
+      // autoRotateSpeed={1}
       enableDamping={true}
       dampingFactor={0.01}
       maxPolarAngle={Math.PI * 0.5}
@@ -42,11 +42,12 @@ const Plane = () => (
 const Box = (args) => {
   const meshRef = useRef();
   const [hovered, setHovered] = useState(false);
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(Math.random() > 0.5);
   const props = useSpring({
-    scale: active ? [1, 1, 0.2] : [1, 1, 1],
-    color: hovered ? "#00ff40" : "#00a030",
+    scale: active ? [1, 1, 1] : [0.6, 0.6, 0.6],
+    color: hovered ? "#80ffcc" : "#00ff40",
   });
+
   useFrame(() => {
     meshRef.current.rotation.x = active
       ? 0
@@ -56,6 +57,8 @@ const Box = (args) => {
       : meshRef.current.rotation.y + 0.002;
     meshRef.current.rotation.z += 0.004;
   });
+
+  var AnimatedWobbleMaterial = a(MeshWobbleMaterial);
 
   return (
     <a.mesh
@@ -68,12 +71,12 @@ const Box = (args) => {
       scale={props.scale}
       {...args}
     >
-      <a.boxBufferGeometry attach="geometry" args={[0.5, 0.5, 0.5]} />
-      <MeshWobbleMaterial
-        color="rgb(0,255,0)"
+      <a.sphereBufferGeometry attach="geometry" args={[0.5, 80, 80]} />
+      <AnimatedWobbleMaterial
+        color={props.color}
         attach="material"
-        factor={5} // Strength, 0 disables the effect (default=1)
-        speed={2} // Speed (default=1)
+        factor={100}
+        speed={0.5}
       />
     </a.mesh>
   );
@@ -87,8 +90,8 @@ class ThreeDPage extends Component {
   generateBoxes() {
     var dimensions = [10, 10, 2];
     var boxes = [];
-    for (var x = -(dimensions[0]-1)/2; x < dimensions[0]/2; x++) {
-      for (var y = -(dimensions[1]-1)/2; y < dimensions[1]/2; y++) {
+    for (var x = -(dimensions[0] - 1) / 2; x < dimensions[0] / 2; x++) {
+      for (var y = -(dimensions[1] - 1) / 2; y < dimensions[1] / 2; y++) {
         for (var z = 1; z <= dimensions[2]; z++) {
           boxes.push([x, y, z]);
         }
@@ -100,7 +103,7 @@ class ThreeDPage extends Component {
   render() {
     return (
       <div className="content">
-        <Canvas style={{ height: "100vh" }} camera={{ position: [0, 0, 6] }}>
+        <Canvas style={{ height: "100vh" }} camera={{ position: [0, 8, 4] }}>
           {/* <spotLight position={[0, 0, 5]} /> */}
           <pointLight position={[0, 0, 5]} />
           <ambientLight intensity={0.2} />

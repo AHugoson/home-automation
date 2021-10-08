@@ -1,6 +1,6 @@
 import socket
 
-SERVER_ADDR = ('localhost', 1337)
+SERVER_ADDR = ('localhost', 8989)
 
 _socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 

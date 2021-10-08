@@ -89,6 +89,74 @@ class ControlPage extends Component {
             </tr>
           </tbody>
         </table>
+        <br />
+        <table>
+          <tbody>
+            <tr>
+              <th colSpan="3">IR Z-906</th>
+            </tr>
+            <tr>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:400501FE:32;")}
+                >
+                  Power
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:400510EF:32;")}
+                >
+                  Input
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:400557A8:32;")}
+                >
+                  Mute
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:400550AF:32;")}
+                >
+                  Level
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:400556A9:32;")}
+                >
+                  Vol -
+                </button>
+              </td>
+              <td></td>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:400555AA:32;")}
+                >
+                  Vol +
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:4005708F:32;")}
+                >
+                  Effect
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }

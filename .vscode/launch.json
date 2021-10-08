@@ -8,7 +8,7 @@
             "name": "Python: core.py",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceRoot}/core.py",
+            "program": "${workspaceRoot}/core/core.py",
             "console": "internalConsole",
             "redirectOutput": true,
         },
