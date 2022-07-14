@@ -157,6 +157,47 @@ class ControlPage extends Component {
             </tr>
           </tbody>
         </table>
+        <br />
+        <table>
+          <tbody>
+            <tr>
+              <th colSpan="3">iiglo</th>
+            </tr>
+            <tr>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:CF331CE:32;")}
+                >
+                  POWER
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:CF3619E:32;")}
+                >
+                  SPEED
+                </button>
+              </td>
+            </tr>
+            <br/>
+            <tr>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:CF339C6:32;")}
+                >
+                  OSC (U/D)
+                </button>
+              </td>
+              <td>
+                <button
+                  onClick={() => this.sendDirectCommand("sendIR:CF3A956:32;")}
+                >
+                  OSC (L/R)
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     );
   }
