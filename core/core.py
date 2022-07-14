@@ -10,7 +10,7 @@ import websockets
 from Controller import Arduino_Controller
 from Server import TCP_Server
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.DEBUG)
 
 _controller = Arduino_Controller()
 _controller.start()
@@ -39,7 +39,7 @@ async def updateActiveAlarms():
             old_alarms = alarms
             print(schedule.jobs)
         schedule.run_pending()
-        await asyncio.sleep(1)
+        await asyncio.sleep(60)
 
 def scheduleAlarms(name:str, time:str, days:int, commands:list, tag=''):
     if days == 0:

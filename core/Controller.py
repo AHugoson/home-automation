@@ -19,7 +19,7 @@ class Arduino_Controller(threading.Thread):
                     logging.debug('[SENT] Sent to Arduino:' + self._message)
                     self._message = ''
                 if ser.inWaiting():
-                    read_str = ser.readline().decode()
+                    read_str = ser.readline().decode().strip()
                     logging.debug('[RECEIVED] Arduino sent:' + read_str)
                 if self._close_connection:
                     ser.close()
